@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function showNextChance() {
+            alert("Next chance");
+        }
+    </script>
+</head>
+<body>
+    <h1>Rock Paper Scissor</h1>
+    <form method="POST" id="rps-form" onsubmit="setTimeout(showNextChance, 100);">
+        <div class="choices-row">
+            <button type="submit" name="choice" value="rock" class="choice-btn rock">🪨 Rock</button>
+            <button type="submit" name="choice" value="paper" class="choice-btn paper">📄 Paper</button>
+            <button type="submit" name="choice" value="scissors" class="choice-btn scissors">✂️ Scissors</button>
+        </div>
+    </form>
+    {% if result %}
+    <div class="result-cards">
+        <div class="choice-card user">
+            <div class="choice-title">Your Choice</div>
+            <div class="choice-icon">
+                {% if user_choice == 'rock' %}🪨{% elif user_choice == 'paper' %}📄{% elif user_choice == 'scissors' %}✂️{% endif %}
+            </div>
+            <div class="choice-text">{{ user_choice|capitalize }}</div>
+        </div>
+        <div class="choice-card computer">
+            <div class="choice-title">Computer's Choice</div>
+            <div class="choice-icon">
+                {% if computer_choice == 'rock' %}🪨{% elif computer_choice == 'paper' %}📄{% elif computer_choice == 'scissors' %}✂️{% endif %}
+            </div>
+            <div class="choice-text">{{ computer_choice|capitalize }}</div>
+        </div>
+    </div>
+    <h2 class="result-msg">{{ result }}</h2>
+{% endif %}
+<div class="watermark">© created by Gargi Yekhande</div>
+
+</body>
+</html>
